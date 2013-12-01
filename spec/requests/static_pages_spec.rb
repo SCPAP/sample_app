@@ -32,4 +32,11 @@ describe "Static pages" do
     it { should have_content('Contact') }
     it { should have_title(full_title('Contact')) }
   end
+
+  describe "Game page" do
+    before { visit game_path }
+
+    it { should have_content('Game') }
+    it { should have_title(full_title('Game')) }
+  end
 end

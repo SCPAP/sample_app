@@ -1,0 +1,258 @@
+<% provide(:title, 'Game') %>
+<h1>Game</h1>
+
+<%= javascript_include_tag "bpopup.min.js", "data-turbolinks-track" => true %>
+
+<script type="text/javascript">
+    var boxopened1 = "";
+    var boxopened2 = "";
+    var imgopened = "";
+    var currentopened = "";
+    var count = 0;
+    var found =  0;
+    var state = false;
+
+    function tag(){
+        $("#"+boxopened1 +" img").addClass(document.forms[1].elements[0].value);
+    }
+
+    function search(){
+        $("img." + document.forms[0].elements[0].value).parent().attr('style', 'border: 1px solid #FF0000;');
+
+        setTimeout(function() {
+            $("img." + document.forms[0].elements[0].value).parent().attr('style', 'none');
+        }, 2000);
+    }
+
+    function randomFromTo(from, to){
+        return Math.floor(Math.random() * (to - from + 1) + from);
+    }
+
+    function shuffle() {
+        var children = $("#boxcard").children();
+        var child = $("#boxcard div:first-child");
+
+        var array_img = new Array();
+
+        for (i=0; i<children.length; i++) {
+            array_img[i] = $("#"+child.attr("id")+" img").attr("src");
+            child = child.next();
+        }
+
+        var child = $("#boxcard div:first-child");
+
+        for (z=0; z<children.length; z++) {
+            randIndex = randomFromTo(0, array_img.length - 1);
+
+            // set new image
+            $("#"+child.attr("id")+" img").attr("src", array_img[randIndex]);
+            array_img.splice(randIndex, 1);
+
+            child = child.next();
+        }
+    }
+
+    function resetGame() {
+        shuffle();
+        $("#boxcard div img").hide();
+        $("img").removeClass("opacity");
+        count = 0;
+        $("#msg").remove();
+        $("#count").html("" + count);
+        boxopened1 = "";
+        imgopened = "";
+        found = 0;
+        return false;
+    }
+
+    $(document).ready(function() {
+        $("#boxcard div img").hide();
+        $("#boxcard div").click(openCard);
+
+        shuffle();
+
+        function openCard() {
+            id = $(this).attr("id");
+
+            if ($("#"+id).attr('class') == "opencard")
+                $('#element_to_pop_up').bPopup();
+            
+            if ($("#"+id+" img").is(":hidden")) {
+                $("#boxcard div").unbind("click", openCard);
+                $("#"+id+" img").slideDown('fast');
+                $("#"+id).addClass('opencard');
+
+                if (imgopened == "") {
+                    boxopened1 = id;
+                    imgopened = $("#"+id+" img").attr("src");
+                    $('#element_to_pop_up').html("<img src=" + imgopened + " height='500' width='400'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
+                    setTimeout(function() {
+                        $("#boxcard div").bind("click", openCard);
+                    }, 400);
+                } else {
+                    boxopened2 = id;
+                    currentopened = $("#"+id+" img").attr("src");
+                    $('#element_to_pop_up').html("<img src=" + currentopened + " height='500' width='400'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
+                    if (imgopened != currentopened) {
+                        // close again
+                        setTimeout(function() {
+                            $("#"+id+" img").slideUp('fast');
+                            $("#"+boxopened1 +" img").slideUp('fast');
+                            $("#"+boxopened1).removeClass('opencard');
+                            $("#"+boxopened2).removeClass('opencard');
+                            boxopened1 = "";
+                            imgopened = "";
+                        }, 400);
+                    } else {
+                        // found
+                        // $("#"+id+" img").addClass("opacity");
+                        // $("#"+boxopened+" img").addClass("opacity");
+                        $("#"+id).addClass('opencard');
+                        $('#element_to_pop_up').html("<img src=" + currentopened + " height='500' width='400'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
+                        found++;
+                        boxopened1 = "";
+                        imgopened = "";
+                    }
+                    
+                    setTimeout(function() {
+                        $("#boxcard div").bind("click", openCard);
+                    }, 400);
+                }
+
+                count++;
+                $("#count").html("" + count);
+
+                if (found == 10) {
+                    msg = '<span id="msg">Congrats ! You Found All Sushi With </span>';
+                    $("span.link").prepend(msg);
+                }
+            }
+        }
+    });
+</script>
+
+<style type="text/css">
+    * {
+        font-family: Arial, "Free Sans";
+    }
+
+    #boxcard {
+        margin: 0 auto;
+        width: 625px;
+        z-index: 1;
+    }
+
+    #boxcard div {
+        float: left;
+        width: 100px;
+        height: 100px;
+        background: #d9d9d9;
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid #999;
+        cursor: pointer;
+        -webkit-border-radius: .5em;
+        -moz-border-radius: .5em;
+        border-radius: .5em;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.5);
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.5);
+        box-shadow: 0 1px 2px rgba(0,0,0,.5);
+        z-index: 2;
+    }
+
+    #boxcard div img {
+        border: none;
+        z-index: 3;
+    }
+
+    .opacity {
+        opacity: .6;
+        filter: alpha(opacity=60);
+    }
+
+    #boxbutton {
+        text-align: center;
+        padding: 20px;
+    }
+    .link {
+        font-size: 18px;
+        color: #ffffff;
+        text-decoration: none;
+        background: #0066cc;
+        padding: 5px 10px;
+        -webkit-border-radius: .5em;
+        -moz-border-radius: .5em;
+        border-radius: .5em;
+    }
+    .link:hover {
+        background: #999;
+    }
+
+    .opencard {
+    position: relative;
+    width: 150px;
+    height: 100px;
+    margin: 10px;
+    float: left
+    }
+
+    .text {
+        color: white;
+        display: none;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 30%;
+        background: #999;
+        background: rgba(0,0,0,0.3);
+        text-align: center;
+    }
+
+    .opencard:hover .text {
+        display: block;
+    }
+
+    .opencard:hover {
+        opacity: 0.7;
+    }
+
+    #element_to_pop_up { display:none; }
+</style>
+
+
+<div id="boxbutton">
+    <span class="link">
+        <span id="count">0</span>
+        Click
+    </span>
+    &nbsp;
+    <a href="javascript:" class="link" onclick="resetGame();">Reset</a>
+</div>
+
+<form action='javascript:search();' method='post'> <br>  <input id='input' type='text' value='Type a annotated tag in here and click on the Search button!'/> <input type='submit' value='Search' /> </form>
+
+<div id="boxcard">
+    <div id="card1"><img src="/01.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card2"><img src="/02.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card3"><img src="/03.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card4"><img src="/04.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card5"><img src="/05.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card6"><img src="/06.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card7"><img src="07.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card8"><img src="/08.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card9"><img src="/09.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card10"><img src="/10.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card11"><img src="/01.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card12"><img src="/02.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card13"><img src="/03.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card14"><img src="/04.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card15"><img src="/05.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card16"><img src="/06.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card17"><img src="/07.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card18"><img src="/08.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card19"><img src="/09.jpg" style="" /><span class="text">zoom</span></div>
+    <div id="card20"><img src="/10.jpg" style="" /><span class="text">zoom</span></div>        
+</div>
+
+<!-- Element to pop up -->
+<div id="element_to_pop_up"><%=image_tag("/01.jpg", :size => "500x400")%></div>
