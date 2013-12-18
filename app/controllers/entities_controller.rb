@@ -19,7 +19,7 @@ class EntitiesController < ApplicationController
       @body[count] = {
           "id" => item.id,
           "latitude" => item.latitude,
-          "longitude" => item.longtitude
+          "longitude" => item.longitude
       }
       count += 1
     end
@@ -67,11 +67,11 @@ class EntitiesController < ApplicationController
     if params[:entity][:image]
       @entity.image = params[:entity][:image].read
       @entity.filename = params[:entity][:image].original_filename
-      @entity.mime_type = params[:entity][:image].content_type
+      @entity.mine_type = params[:entity][:image].content_type
     end
 
     @entity.latitude = params[:entity][:latitude]
-    @entity.longtitude = params[:entity][:longtitude]
+    @entity.longitude = params[:entity][:longitude]
 
     if @entity.save
       redirect_to(@entity, :notice => 'Photo was successfully created.')
@@ -101,7 +101,7 @@ class EntitiesController < ApplicationController
     end
 
     @entity.latitude = params[:latitude]
-    @entity.longtitude = params[:longitude]
+    @entity.longitude = params[:longitude]
 
     @entity.save
   end
