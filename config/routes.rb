@@ -6,6 +6,9 @@ SampleApp::Application.routes.draw do
       get :following, :followers
     end
   end
+  resources :entities do
+    get "load_image", :on => :member
+  end
   resources :sessions,   only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   resources :sessions,      only: [:new, :create, :destroy]

@@ -17,7 +17,7 @@
   <tbody>
     <% @entities.each do |entity| %>
       <tr>
-        <td><%= entity.image %></td>
+        <td><%= image_tag load_image_entity_path(entity.id) %></td>
         <td><%= entity.latitude %></td>
         <td><%= entity.longitude %></td>
         <td><%= entity.mine_type %></td>

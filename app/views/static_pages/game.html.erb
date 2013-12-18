@@ -231,6 +231,13 @@
 <form action='javascript:search();' method='post'> <br>  <input id='input' type='text' value='Type a annotated tag in here and click on the Search button!'/> <input type='submit' value='Search' /> </form>
 
 <div id="boxcard">
+    <% @entities.each do |entity| %>
+    <div id="'" + <%= entity.id %> + "'" src= "'" + <%= entity.image %> + "'"/><span class="text">zoom</span></div>
+    <%end%>     
+</div>
+
+<!--
+<div id="boxcard">
     <div id="card1"><img src="/01.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card2"><img src="/02.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card3"><img src="/03.jpg" style="" /><span class="text">zoom</span></div>
@@ -252,6 +259,7 @@
     <div id="card19"><img src="/09.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card20"><img src="/10.jpg" style="" /><span class="text">zoom</span></div>        
 </div>
+-->
 
 <!-- Element to pop up -->
 <div id="element_to_pop_up"><%=image_tag("/01.jpg", :size => "500x400")%></div>
