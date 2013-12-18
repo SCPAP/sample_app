@@ -43,7 +43,16 @@ class EntitiesController < ApplicationController
     @entities = Entity.all
   end
   
-
+ def addtags
+   @entity = Entity.find(params[:id])
+ if (@entity.tags == nil || @entity.tags == "")
+   @entity.tags = params[:tags]  
+ else
+   @entity.tags =  @entity.tags + ";" + params[:tags]
+ end
+ @entity.save
+ end
+  
   # GET /entities/1
   # GET /entities/1.json
   def show

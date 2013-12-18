@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218170809) do
+ActiveRecord::Schema.define(version: 20131218195604) do
 
   create_table "entities", force: true do |t|
     t.binary   "image"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20131218170809) do
     t.string   "filename"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "tags"
   end
 
   create_table "microposts", force: true do |t|
