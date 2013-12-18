@@ -14,7 +14,7 @@
     function tag(){
         $("#"+ boxopened1 +" img").addClass(document.forms[1].elements[0].value);
         var id = boxopened1.substring(4);
-alert(id);
+
 		$.ajax({
 	                            url: "entities/" + id + "/addtags",
 	                            contentType: "application/json",
@@ -248,6 +248,7 @@ alert(id);
     <%end%>     
 </div>
 
+<!--
 <div id="boxcard">
     <div id="card1"><img src="/01.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card2"><img src="/02.jpg" style="" /><span class="text">zoom</span></div>
@@ -270,6 +271,7 @@ alert(id);
     <div id="card19"><img src="/09.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card20"><img src="/10.jpg" style="" /><span class="text">zoom</span></div>        
 </div>
+-->
 
 
 <!-- Element to pop up -->
