@@ -24,7 +24,7 @@ SampleApp::Application.routes.draw do
   match '/game', to: 'static_pages#game', via: 'get'
   match '/entities/createnew' => 'entities#create_new' , via: 'post', :as => :entities_create_new
   match '/entities/allonlyposition' => 'entities#all_only_position' , via: 'post', :as => :entities_all_only_position
-  match '/entities/game' => 'entities#game' , via: 'get', :as => :entities_game
+  match '/entitiesgame' => 'entities#game' , via: 'get', :as => :entities_game
 
 
   # The priority is based upon order of creation: first created -> highest priority.
