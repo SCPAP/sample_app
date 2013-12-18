@@ -22,7 +22,7 @@ SampleApp::Application.routes.draw do
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/game', to: 'static_pages#game', via: 'get'
-  match '/entities/createnew' => 'entities#create_new' , via: 'post', :as => :entities_create_new
+  match '/entities/createnew' => 'entities#create_new' , via: 'get', :as => :entities_create_new
   match '/entities/allonlyposition' => 'entities#all_only_position' , via: 'post', :as => :entities_all_only_position
   match '/entities/game' => 'entities#game' , via: 'post', :as => :entities_game
 
