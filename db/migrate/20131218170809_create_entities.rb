@@ -4,7 +4,7 @@ class CreateEntities < ActiveRecord::Migration
       t.binary :image
       t.string :latitude
       t.string :longitude
-      t.string :mine_type
+      t.string :mime_type
       t.string :filename
 
       t.timestamps
