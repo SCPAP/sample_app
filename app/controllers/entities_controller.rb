@@ -97,7 +97,7 @@ class EntitiesController < ApplicationController
     if params[:file]
       @entity.image = params[:file].read
       @entity.filename = params[:file].original_filename
-      @entity.mime_type = params[:file].content_type
+      @entity.mine_type = params[:file].content_type
     end
 
     @entity.latitude = params[:latitude]
@@ -108,8 +108,8 @@ class EntitiesController < ApplicationController
 
   def load_image
     @entity = Entity.find(params[:id])
-    puts @entity.mime_type + " " + @entity.filename
-    send_data(@entity.image, :type => @entity.mime_type, :filename => "#{ @entity.filename }.jpg", :disposition => "inline")
+    puts @entity.mine_type + " " + @entity.filename
+    send_data(@entity.image, :type => @entity.mine_type, :filename => "#{ @entity.filename }.jpg", :disposition => "inline")
   end
 
   # PATCH/PUT /entities/1
