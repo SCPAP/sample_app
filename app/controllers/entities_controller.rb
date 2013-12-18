@@ -100,6 +100,8 @@ class EntitiesController < ApplicationController
       @entity.mine_type = params[:file].content_type
     end
 
+puts "longitude"
+
     @entity.latitude = params[:latitude]
     @entity.longitude = params[:longitude]
 
