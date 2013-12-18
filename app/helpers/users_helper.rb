@@ -7,4 +7,9 @@ module UsersHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
+
+  def most_game_points_update()
+    current_user.update_attribute(:most_game_points, 300)
+    flash[:success] = current_user.name
+  end
 end

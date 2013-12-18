@@ -4,7 +4,5 @@
 <%= will_paginate %>
 
 <ul class="users">
-  <%= render @users %>
+  <%= render @users.order("most_game_points DESC") %>
 </ul>
-
-<%= will_paginate %>

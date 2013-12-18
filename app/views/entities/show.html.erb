@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @entity.image %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @entity.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @entity.longitude %>
+</p>
+
+<p>
+  <strong>Mine type:</strong>
+  <%= @entity.mine_type %>
+</p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @entity.filename %>
+</p>
+
+<%= link_to 'Edit', edit_entity_path(@entity) %> |
+<%= link_to 'Back', entities_path %>
