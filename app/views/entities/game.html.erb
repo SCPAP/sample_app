@@ -273,11 +273,11 @@
     <div id="card20"><img src="/10.jpg" style="" /><span class="text">zoom</span></div>        
 </div>
 
-    
-    <%= @entities.each do |entity| %> 
-        <h1> <%= entity.tags %> </h1>
-    <%= end %>
-
+    <div id="tagtable">
+    <% @entities.each do |entity| %>
+        <h1><%= entity.tags %> </h1>
+    <%end%>     
+    </div>
 
 
 <!-- Element to pop up -->
