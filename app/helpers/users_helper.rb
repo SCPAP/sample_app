@@ -9,7 +9,7 @@ module UsersHelper
   end
 
   def most_game_points_update()
-    current_user.update_attribute(:most_game_points, 300)
+    current_user.update_attribute(:most_game_points, 1000)
     flash[:success] = current_user.name
   end
 end
