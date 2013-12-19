@@ -19,7 +19,7 @@
 	                            url: "entities/" + id + "/addtags",
 	                            contentType: "application/json",
 	                            type: "POST",
-	                            data: JSON.extend({ id: id, tags: document.forms[1].elements[0].value }),
+	                            data: JSON.stringify({ id: id, tags: document.forms[1].elements[0].value }),
 	                            success: function (result) {
 	                            },
 	                            error: function (result) {                       

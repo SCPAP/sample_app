@@ -6,7 +6,7 @@ class CreateEntities < ActiveRecord::Migration
       t.string :longitude
       t.string :mime_type
       t.string :filename
-      t.array :tags
+      t.string :tags
 
       t.timestamps
     end
