@@ -16,7 +16,7 @@
 
     function tag(){
         $("#"+ boxopened1 +" img").addClass(document.forms[1].elements[0].value);
-        var id = imgopened.substring(50, (imgopened.length - 11) - 50).charAt(0);
+        var id = imgopened.substring(50, (imgopened.length - 11)).charAt(0);
         alert(id);
 		$.ajax({
 	                            url: "entities/" + id + "/addtags",
