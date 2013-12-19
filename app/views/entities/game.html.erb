@@ -13,14 +13,13 @@
 
     function tag(){
         $("#"+ boxopened1 +" img").addClass(document.forms[1].elements[0].value);
-        var image = imgopened.substring(50).charAt(0);
-        alert(image);
+        var id = imgopened.substring(50).charAt(0);
 
 		$.ajax({
-	                            url: "entities/" + image + "/addtags",
+	                            url: "entities/" + id + "/addtags",
 	                            contentType: "application/json",
 	                            type: "POST",
-	                            data: JSON.stringify({ id: id, tags: document.forms[1].elements[0].value }),
+	                            data: JSON.extend({ id: id, tags: document.forms[1].elements[0].value }),
 	                            success: function (result) {
 	                            },
 	                            error: function (result) {                       
