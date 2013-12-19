@@ -146,7 +146,7 @@
                                 url: "users/" + id + "/updatescore", 
                                 contentType: "application/json",
                                 type: "POST",
-                                data: JSON.stringify({ id: id, score: $("span.link").value),
+                                data: JSON.stringify({ id: id, score: $("span.link").value}),
                                 success: function (result) {
                                 },
                                 error: function (result) {                       
