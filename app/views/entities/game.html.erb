@@ -14,10 +14,10 @@
     function tag(){
         $("#"+ boxopened1 +" img").addClass(document.forms[1].elements[0].value);
         var image = imgopened.substring(50).charAt(0);
-
+        alert(image);
 
 		$.ajax({
-	                            url: "entities/" + id + "/addtags",
+	                            url: "entities/" + image + "/addtags",
 	                            contentType: "application/json",
 	                            type: "POST",
 	                            data: JSON.stringify({ id: id, tags: document.forms[1].elements[0].value }),
