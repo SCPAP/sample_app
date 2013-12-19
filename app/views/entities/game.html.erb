@@ -14,7 +14,6 @@
     function tag(){
         $("#"+ boxopened1 +" img").addClass(document.forms[1].elements[0].value);
         var id = imgopened.substring(50).charAt(0);
-        alert(<%= entity.tags %>);
 		$.ajax({
 	                            url: "entities/" + id + "/addtags",
 	                            contentType: "application/json",
@@ -26,6 +25,12 @@
 	                            }
 	                        });
     }
+
+    <div id="tagtable">
+    <% @entities.each do |entity| %>
+    <div id="'"<%= entity.id %>"'" class="'"<%= entity.tags %> + "'"</div>
+    <%end%>     
+    </div>
 
     function search(){
         $("img." + document.forms[0].elements[0].value).parent().attr('style', 'border: 1px solid #FF0000;');
