@@ -275,7 +275,7 @@
 
     
     <%= @entities.each do |entity|%> 
-        <h1> <%= entity.tags.split(' ').uniq.join(' ') %></h2>
+        <h1> <%= entity.tags.upcase! %></h2>
     <%= end %>
 
 
