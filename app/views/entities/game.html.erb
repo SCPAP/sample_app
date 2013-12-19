@@ -13,7 +13,8 @@
 
     function tag(){
         $("#"+ boxopened1 +" img").addClass(document.forms[1].elements[0].value);
-        var id = boxopened1.substring(4);
+        var image = imgopened.substring(50).charAt(0);
+
 
 		$.ajax({
 	                            url: "entities/" + id + "/addtags",
@@ -83,6 +84,7 @@
         shuffle();
 
         function openCard() {
+			alert("Test!");
             id = $(this).attr("id");
 
             if ($("#"+id).attr('class') == "opencard")
@@ -242,31 +244,28 @@
 
 <form action='javascript:search();' method='post'> <br>  <input id='input' type='text' value='Type a annotated tag in here and click on the Search button!'/> <input type='submit' value='Search' /> </form>
 
-<div id="boxcard">
-    <% @entities.each do |entity| %>
-    <div id='card<%= entity.id %>' src='https://quiet-fortress-7864.herokuapp.com/entities/<%= entity.id %>/load_image' style=""/><span class="text">zoom</span></div>
-    <%end%>
-    <% @entities.each do |entity| %>
-    <div id='card1<%= entity.id %>' src='https://quiet-fortress-7864.herokuapp.com/entities/<%= entity.id %>/load_image' style=""/><span class="text">zoom</span></div>
-    <%end%>     
-</div>
-
 <!--
 <div id="boxcard">
-    <div id="card1"><img src="/01.jpg" style="" /><span class="text">zoom</span></div>
+    <div id='card1' src='https://quiet-fortress-7864.herokuapp.com/entities/1/load_image.jpg' style=""/><span class="text">zoom</span></div>
+    <div id='card4>' src='https://quiet-fortress-7864.herokuapp.com/entities/4/load_image.jpg' style=""/><span class="text">zoom</span></div>
+</div>
+-->
+
+<div id="boxcard">
+    <div id='card1'><img id='picture1' src='http://quiet-fortress-7864.herokuapp.com/entities/1/load_image.jpg'style=""/><span class="text">zoom</span></div>
     <div id="card2"><img src="/02.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card3"><img src="/03.jpg" style="" /><span class="text">zoom</span></div>
-    <div id="card4"><img src="/04.jpg" style="" /><span class="text">zoom</span></div>
+    <div id='card4'><img id='picture4' src='http://quiet-fortress-7864.herokuapp.com/entities/4/load_image.jpg' style=""/><span class="text">zoom</span></div>
     <div id="card5"><img src="/05.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card6"><img src="/06.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card7"><img src="/07.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card8"><img src="/08.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card9"><img src="/09.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card10"><img src="/10.jpg" style="" /><span class="text">zoom</span></div>
-    <div id="card11"><img src="/01.jpg" style="" /><span class="text">zoom</span></div>
+    <div id='card11'><img id='picture11' src='http://quiet-fortress-7864.herokuapp.com/entities/1/load_image.jpg'style=""/><span class="text">zoom</span></div>
     <div id="card12"><img src="/02.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card13"><img src="/03.jpg" style="" /><span class="text">zoom</span></div>
-    <div id="card14"><img src="/04.jpg" style="" /><span class="text">zoom</span></div>
+    <div id='card14'><img id='picture14' src='http://quiet-fortress-7864.herokuapp.com/entities/4/load_image.jpg' style=""/><span class="text">zoom</span></div>
     <div id="card15"><img src="/05.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card16"><img src="/06.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card17"><img src="/07.jpg" style="" /><span class="text">zoom</span></div>
@@ -274,7 +273,8 @@
     <div id="card19"><img src="/09.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card20"><img src="/10.jpg" style="" /><span class="text">zoom</span></div>        
 </div>
--->
+
+
 
 
 <!-- Element to pop up -->
