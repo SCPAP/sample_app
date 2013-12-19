@@ -275,7 +275,8 @@
 
     <div id="tagtable">
     <% @entities.each do |entity| %>
-        <h1><%= entity.tags.upcase %> </h1>
+        <% a = entity.tags.upcase %>
+        <h1> <%= a %> </h1>
     <%end%>     
     </div>
 
