@@ -26,11 +26,6 @@
 	                        });
     }
 
-    <div id="tagtable">
-    <% @entities.each do |entity| %>
-    <div id="'"<%= entity.id %>"'" class="'"<%= entity.tags %> + "'"</div>
-    <%end%>     
-    </div>
 
     function search(){
         $("img." + document.forms[0].elements[0].value).parent().attr('style', 'border: 1px solid #FF0000;');
@@ -278,7 +273,11 @@
     <div id="card20"><img src="/10.jpg" style="" /><span class="text">zoom</span></div>        
 </div>
 
-
+    <div id="tagtable">
+    <% @entities.each do |entity| %>
+    <div id="'"<%= entity.id %>"'" class="'"<%= entity.tags %> + "'"</div>
+    <%end%>     
+    </div>
 
 
 <!-- Element to pop up -->
