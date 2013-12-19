@@ -50,8 +50,8 @@ class EntitiesController < ApplicationController
  else
    @entity.tags =  @entity.tags + " " + params[:tags]
    a = @entity.tags
-   a.split.join!
-   @entity.tags = a
+   b = a.split(' ').join(' ')
+   @entity.tags = b
  end
  @entity.save
  end
