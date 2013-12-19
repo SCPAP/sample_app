@@ -274,14 +274,9 @@
 </div>
 
     
-    <% @entities.each do |entity| 
-        a = entity.tags.split(' ')
-        b = ["some", "thing"]
-        a.concat b
-        a.uniq
-        c = a.join(' ')
-        puts c
-    end%>
+    <%= @entities.each do |entity|%> 
+        <h1> <%= entity.tags.split(' ').uniq.join(' ') %></h2>
+    <%= end %>
 
 
 
