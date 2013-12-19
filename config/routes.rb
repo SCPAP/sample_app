@@ -26,6 +26,7 @@ SampleApp::Application.routes.draw do
   match '/entities/allonlyposition' => 'entities#all_only_position' , via: 'post', :as => :entities_all_only_position
   match '/entitiesgame' => 'entities#game' , via: 'get', :as => :entities_game
   match '/entities/:id/addtags' => 'entities#addtags' , via: 'post', :as => :entities_addtags
+  match '/users/:id/updatescore' => 'users#updatescore' , via: 'post', :as => :users_updatescore
 
 
   # The priority is based upon order of creation: first created -> highest priority.

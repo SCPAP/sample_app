@@ -60,14 +60,10 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
-  def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to @user
-    else
-      render 'edit'
-    end
+  def updatescore
+     @user = User.find(params[:id])
+     @user.most_game_points =  params[:most_game_points].to_i
+     @user.most_game_points.save
   end
 
   private

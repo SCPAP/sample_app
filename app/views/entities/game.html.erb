@@ -142,6 +142,16 @@
                     msg = '<span id="msg">Congrats ! You Found All Pictures With </span>';
                     $("span.link").prepend(msg);
                     score = $("span.link");
+                            $.ajax({
+                                url: "users/" + id + "/updatescore", 
+                                contentType: "application/json",
+                                type: "POST",
+                                data: JSON.stringify({ id: id, score: $("span.link").value),
+                                success: function (result) {
+                                },
+                                error: function (result) {                       
+                             }
+                            }); 
                 }
             }
         }
