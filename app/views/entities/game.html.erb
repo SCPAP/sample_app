@@ -251,8 +251,14 @@
 
 <form action="javascript:search();" method="post"> <br>  <input id="input" type="text" value="Type an annotated tag in here and click on the Search button!"/> <input type='submit' value='Search' /> </form>
 
-<img src= 'https://quiet-fortress-7864.herokuapp.com/entities/1/load_image.jpg'/>
-
+<div id="boxcard">
+    <% @entities.each // do |entity| %>
+    <div id="'card" + <%= entity.id %> + "'"><img src= "'https://quiet-fortress-7864.herokuapp.com/entities/" + <%= entity.id %> + "/load_image.jpg'"/><span class="text">zoom</span></div>
+    <%end%>
+    <% @entities.each // do |entity| %>
+    <div id="'card1" + <%= entity.id %> + "'"><img src= "'https://quiet-fortress-7864.herokuapp.com/entities/" + <%= entity.id %> + "/load_image.jpg'"/><span class="text">zoom</span></div>
+    <%end%>
+</div>
 
 <!--
 <div id="boxcard">
