@@ -49,7 +49,7 @@ class EntitiesController < ApplicationController
    @entity.tags = params[:tags]  
  else
    @entity.tags =  @entity.tags + " " + params[:tags]
-   @entity.tags.upcase
+   @entity.tags.upcase!
  end
  @entity.save
  end
