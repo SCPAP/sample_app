@@ -40,7 +40,7 @@ class EntitiesController < ApplicationController
   end
 
   def game
-    @entities = Entity.all
+    @entities = Entity.order("RANDOM()").limit(10)
   end
   
  def addtags
