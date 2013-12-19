@@ -274,15 +274,20 @@
 <form action="javascript:search();" method="post"> <br>  <input id="input" type="text" value="Type an annotated tag in here and click on the Search button!"/> <input type='submit' value='Search' /> </form>
 
 <div id="boxcard">
+    <% count = 0 %>    
     <% @entities.each do |entity| %>
-        <div id="card<%= entity.id %>"><img src="https://quiet-fortress-7864.herokuapp.com/entities/<%= entity.id %>/load_image">
+        <div id="card<%= count %>"><img src="https://quiet-fortress-7864.herokuapp.com/entities/<%= entity.id %>/load_image">
             <span class="text">zoom</span>
         </div>
+        <% count += 1 %>
     <%end%>
+
+    <% count = 0 %> 
     <% @entities.each do |entity| %>
-        <div id="card1<%= entity.id %>"><img src="https://quiet-fortress-7864.herokuapp.com/entities/<%= entity.id %>/load_image">
+        <div id="card1<%= count %>"><img src="https://quiet-fortress-7864.herokuapp.com/entities/<%= entity.id %>/load_image">
             <span class="text">zoom</span>
         </div>
+        <% count += 1 %>
     <%end%>
 </div>
 
