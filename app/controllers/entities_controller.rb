@@ -50,7 +50,7 @@ class EntitiesController < ApplicationController
  else
    @entity.tags =  @entity.tags + " " + params[:tags]
    a = @entity.tags
-   a.split.uniq.join!
+   a
    @entity.tags = a
  end
  @entity.save
