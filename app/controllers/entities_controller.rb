@@ -48,7 +48,7 @@ class EntitiesController < ApplicationController
  if (@entity.tags == nil || @entity.tags == "")
    @entity.tags = params[:tags]  
  else
-   @entity.tags =  @entity.tags + ";" + params[:tags]
+   @entity.tags =  @entity.tags + " " + params[:tags]
  end
  @entity.save
  end
