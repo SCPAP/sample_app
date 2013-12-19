@@ -84,14 +84,14 @@
                 if (imgopened == "") {
                     boxopened1 = id;
                     imgopened = $("#"+id+" img").attr("src");
-                    $('#element_to_pop_up').html("<img src=" + imgopened + " height='500' width='400'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
+                    $('#element_to_pop_up').html("<img src=" + imgopened + " height='600' width='400'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
                     setTimeout(function() {
                         $("#boxcard div").bind("click", openCard);
                     }, 400);
                 } else {
                     boxopened2 = id;
                     currentopened = $("#"+id+" img").attr("src");
-                    $('#element_to_pop_up').html("<img src=" + currentopened + " height='500' width='400'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
+                    $('#element_to_pop_up').html("<img src=" + currentopened + " height='600' width='400'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
                     if (imgopened != currentopened) {
                         // close again
                         setTimeout(function() {
@@ -107,7 +107,7 @@
                         // $("#"+id+" img").addClass("opacity");
                         // $("#"+boxopened+" img").addClass("opacity");
                         $("#"+id).addClass('opencard');
-                        $('#element_to_pop_up').html("<img src=" + currentopened + " height='500' width='400'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
+                        $('#element_to_pop_up').html("<img src=" + currentopened + " height='600' width='400'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
                         found++;
                         boxopened1 = "";
                         imgopened = "";

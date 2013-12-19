@@ -2,7 +2,7 @@
 
 <%= javascript_include_tag "bpopup.min.js", "data-turbolinks-track" => true %>
 
-<%= most_game_points_update(); %>
+<p style="text-align: justify"><b>Instruction:</b> This game is played like the famous Memory or Concentration game. Uncover and memorize one pictures. Then uncover and memorize the second. If they are the same, both cards remain open, if that's not the case, both cards are closed again. The goal is to uncover all the cards with as little looks on the cards as possible. This game differts from other similar memory games through an useful search and tag function. Every pictures can be tagged before it gets closed again. A search function highlights the different cards tagged with the searched tag. This does not only help the user complete the game faster but also gives important meta data for the pictures.</p> 
 
 <script type="text/javascript">
     var boxopened1 = "";
@@ -12,6 +12,7 @@
     var count = 0;
     var found =  0;
     var state = false;
+    var score = 0;
 
     function tag(){
         $("#"+ boxopened1 +" img").addClass(document.forms[1].elements[0].value);
@@ -30,10 +31,10 @@
 
 
     function search(){
-        $("img." + document.forms[0].elements[0].value).parent().attr('style', 'border: 1px solid #FF0000;');
+        $("img." + document.forms[0].elements[0].value).parent().attr("style", "border: 1px solid #FF0000;");
 
         setTimeout(function() {
-            $("img." + document.forms[0].elements[0].value).parent().attr('style', 'none');
+            $("img." + document.forms[0].elements[0].value).parent().attr("style", "none");
         }, 2000);
     }
 
@@ -78,6 +79,7 @@
         return false;
     }
 
+
     $(document).ready(function() {
         $("#boxcard div img").hide();
         $("#boxcard div").click(openCard);
@@ -85,35 +87,34 @@
         shuffle();
 
         function openCard() {
-			alert("Test!");
             id = $(this).attr("id");
 
-            if ($("#"+id).attr('class') == "opencard")
-                $('#element_to_pop_up').bPopup();
+            if ($("#"+id).attr("class") == "opencard")
+                $("#element_to_pop_up").bPopup();
             
             if ($("#"+id+" img").is(":hidden")) {
                 $("#boxcard div").unbind("click", openCard);
-                $("#"+id+" img").slideDown('fast');
-                $("#"+id).addClass('opencard');
+                $("#"+id+" img").slideDown("fast");
+                $("#"+id).addClass("opencard");
 
                 if (imgopened == "") {
                     boxopened1 = id;
                     imgopened = $("#"+id+" img").attr("src");
-                    $('#element_to_pop_up').html("<img src=" + imgopened + " height='500' width='400'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
+                        $("#element_to_pop_up").html("<img src=" + imgopened + " height='800' width='533'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
                     setTimeout(function() {
                         $("#boxcard div").bind("click", openCard);
                     }, 400);
                 } else {
                     boxopened2 = id;
                     currentopened = $("#"+id+" img").attr("src");
-                    $('#element_to_pop_up').html("<img src=" + currentopened + " height='500' width='400'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
+                        $("#element_to_pop_up").html("<img src=" + currentopened + " height='800' width='533'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
                     if (imgopened != currentopened) {
                         // close again
                         setTimeout(function() {
-                            $("#"+id+" img").slideUp('fast');
+                            $("#"+id+" img").slideUp("fast");
                             $("#"+boxopened1 +" img").slideUp('fast');
-                            $("#"+boxopened1).removeClass('opencard');
-                            $("#"+boxopened2).removeClass('opencard');
+                            $("#"+boxopened1).removeClass("opencard");
+                            $("#"+boxopened2).removeClass("opencard");
                             boxopened1 = "";
                             imgopened = "";
                         }, 400);
@@ -121,8 +122,8 @@
                         // found
                         // $("#"+id+" img").addClass("opacity");
                         // $("#"+boxopened+" img").addClass("opacity");
-                        $("#"+id).addClass('opencard');
-                        $('#element_to_pop_up').html("<img src=" + currentopened + " height='500' width='400'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
+                        $("#"+id).addClass("opencard");
+                        $("#element_to_pop_up").html("<img src=" + currentopened + " height='800' width='533'/> <form action='javascript:tag();' method='post'> <br>  <input type='text' value='" + $("#"+id+" img").attr('class') + "'/> <input type='submit' value='Tag' /> </form>");
                         found++;
                         boxopened1 = "";
                         imgopened = "";
@@ -137,8 +138,9 @@
                 $("#count").html("" + count);
 
                 if (found == 10) {
-                    msg = '<span id="msg">Congrats ! You Found All Sushi With </span>';
+                    msg = '<span id="msg">Congrats ! You Found All Pictures With </span>';
                     $("span.link").prepend(msg);
+                    score = $("span.link");
                 }
             }
         }
@@ -152,14 +154,14 @@
 
     #boxcard {
         margin: 0 auto;
-        width: 625px;
+        width: 1000px;
         z-index: 1;
     }
 
     #boxcard div {
         float: left;
-        width: 100px;
-        height: 100px;
+        width: 175px;
+        height: 116px;
         background: #d9d9d9;
         margin: 5px;
         padding: 5px;
@@ -188,6 +190,7 @@
         text-align: center;
         padding: 20px;
     }
+
     .link {
         font-size: 18px;
         color: #ffffff;
@@ -198,14 +201,15 @@
         -moz-border-radius: .5em;
         border-radius: .5em;
     }
+
     .link:hover {
         background: #999;
     }
 
     .opencard {
     position: relative;
-    width: 150px;
-    height: 100px;
+    width: 175px;
+    height: 116px;
     margin: 10px;
     float: left
     }
@@ -230,7 +234,9 @@
         opacity: 0.7;
     }
 
-    #element_to_pop_up { display:none; }
+    #element_to_pop_up { 
+        display:none;
+    }
 </style>
 
 
@@ -240,33 +246,36 @@
         Click
     </span>
     &nbsp;
-    <a href="javascript:" class="link" onclick="resetGame();">Reset</a>
+    <a href="javascript:location.reload()" class="link">Reset</a>
 </div>
 
-<form action='javascript:search();' method='post'> <br>  <input id='input' type='text' value='Type a annotated tag in here and click on the Search button!'/> <input type='submit' value='Search' /> </form>
+<form action="javascript:search();" method="post"> <br>  <input id="input" type="text" value="Type an annotated tag in here and click on the Search button!"/> <input type='submit' value='Search' /> </form>
+
+<div id="boxcard">
+    <% @entities.each // do |entity| %>
+    <div id="'card" + <%= entity.id %> + "'"><img src= "'https://quiet-fortress-7864.herokuapp.com/entities/" + <%= entity.id %> + "/load_image" + <%= entity.image %> + "'"/><span class="text">zoom</span></div>
+    <%end%>
+    <% @entities.each // do |entity| %>
+    <div id="'card1" + <%= entity.id %> + "'"><img src= "'https://quiet-fortress-7864.herokuapp.com/entities/" + <%= entity.id %> + "/load_image" + <%= entity.image %> + "'"/><span class="text">zoom</span></div>
+    <%end%>
+</div>
 
 <!--
 <div id="boxcard">
-    <div id='card1' src='https://quiet-fortress-7864.herokuapp.com/entities/1/load_image.jpg' style=""/><span class="text">zoom</span></div>
-    <div id='card4>' src='https://quiet-fortress-7864.herokuapp.com/entities/4/load_image.jpg' style=""/><span class="text">zoom</span></div>
-</div>
--->
-
-<div id="boxcard">
-    <div id='card1'><img id='picture1' src='http://quiet-fortress-7864.herokuapp.com/entities/1/load_image.jpg'style=""/><span class="text">zoom</span></div>
+    <div id="card1"><img src="/01.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card2"><img src="/02.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card3"><img src="/03.jpg" style="" /><span class="text">zoom</span></div>
-    <div id='card4'><img id='picture4' src='http://quiet-fortress-7864.herokuapp.com/entities/4/load_image.jpg' style=""/><span class="text">zoom</span></div>
+    <div id="card4"><img src="/04.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card5"><img src="/05.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card6"><img src="/06.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card7"><img src="/07.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card8"><img src="/08.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card9"><img src="/09.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card10"><img src="/10.jpg" style="" /><span class="text">zoom</span></div>
-    <div id='card11'><img id='picture11' src='http://quiet-fortress-7864.herokuapp.com/entities/1/load_image.jpg'style=""/><span class="text">zoom</span></div>
+    <div id="card11"><img src="/01.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card12"><img src="/02.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card13"><img src="/03.jpg" style="" /><span class="text">zoom</span></div>
-    <div id='card14'><img id='picture14' src='http://quiet-fortress-7864.herokuapp.com/entities/4/load_image.jpg' style=""/><span class="text">zoom</span></div>
+    <div id="card14"><img src="/04.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card15"><img src="/05.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card16"><img src="/06.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card17"><img src="/07.jpg" style="" /><span class="text">zoom</span></div>
@@ -274,13 +283,7 @@
     <div id="card19"><img src="/09.jpg" style="" /><span class="text">zoom</span></div>
     <div id="card20"><img src="/10.jpg" style="" /><span class="text">zoom</span></div>        
 </div>
-
-    <div id="tagtable">
-    <% @entities.each do |entity| %>
-        <h1> <%= entity.tags %> </h1>
-    <%end%>     
-    </div>
-
+-->
 
 <!-- Element to pop up -->
-<div id="element_to_pop_up"><%=image_tag("/01.jpg", :size => "500x400")%></div>
+<div id="element_to_pop_up"></div>
