@@ -17,18 +17,14 @@
     </div>
   </div>
 <% else %>
-  <div class="center hero-unit">
-    <h1>Welcome to the Sample App</h1>
-
+  <div>
+    <h1>Welcome to MusicTweets</h1>
+    <div  align="center"><%= image_tag("logo.png", :alt => "log") %></div>
     <h2>
-      This is the home page for the
-      <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-      sample application.
+      Welcome to MusicTweets! Register and share songs on soundcloud with the other users!
     </h2>
 
-    <%= link_to "Sign up now!", signup_path,
-                                class: "btn btn-large btn-primary" %>
+    <div  align="center"><%= link_to "Sign up now!", signup_path,
+                                class: "btn btn-large btn-primary" %></div>
   </div>
-
-  <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
 <% end %>

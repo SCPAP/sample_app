@@ -1,6 +1,5 @@
 <li>
   <%= gravatar_for user, size: 52 %>
-  <%= user.most_game_points %>
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,
