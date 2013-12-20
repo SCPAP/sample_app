@@ -3,7 +3,31 @@
     <span class="user">
       <%= link_to feed_item.user.name, feed_item.user %>
     </span>
-    <span class="content"><%= feed_item.content %></span>
+  <div id="player<%= feed_item.id %>"></div>
+  <script type="text/JavaScript">
+    /*function checkUrl(url, callback){
+      $.ajax({
+        type: 'HEAD',
+        url: url,
+        success: function(msg){
+          return true;
+        },
+        error: function(msg){
+          return false;
+        }
+      });
+    }
+    checkUrl("<%= feed_item.content %>", function(success){
+      console.log(success);
+    })*/
+    SC.oEmbed("<%= feed_item.content %>", {color: "ff0066"}, function(oembed){
+      if(oembed.length < 1){
+        $('#player<%= feed_item.id %>').html('The URL is not working anymore.');
+      } else {
+        $('#player<%= feed_item.id %>').html(oembed.html);
+      }
+    });
+  </script>
     <span class="timestamp">
       Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
     </span>
